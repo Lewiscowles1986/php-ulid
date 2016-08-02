@@ -16,4 +16,4 @@ PHP7
 
 ## Got an idea?
 
-Create an issue, a PR, both (if possible) :smilecat:
+Create an issue, a PR, both (if possible) :smile_cat:
