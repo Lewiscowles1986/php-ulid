@@ -1,0 +1,17 @@
+{
+    "name": "lewiscowles/ulid",
+    "description": "Universally Unique Lexicographically Sortable Identifier ported to PHP",
+    "type": "library",
+    "require-dev": {
+        "phpunit/phpunit": "^5.4"
+    },
+    "license": "AGPL",
+    "authors": [
+        {
+            "name": "Lewis Cowles",
+            "email": "lewiscowles@me.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
