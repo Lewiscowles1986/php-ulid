@@ -14,6 +14,25 @@ PHP7
 
 `composer require lewiscowles/ulid`
 
+## Tests:
+
+To generate the coverage report xdebug extension must be enabled for your PHP
+
+### CLI
+
+`php vendor/bin/phpunit --coverage-html ./reports/ --whitelist src`
+
+### Jenkins pipeline step for testing
+
+```Groovy
+    stage('Run Unit Tests in PHP') {
+        dir('ulid') {
+            sh 'php vendor/bin/phpunit --coverage-html ./reports/ --whitelist src'
+        }
+        publishHTML([allowMissing: true, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'ulid/reports', reportFiles: 'index.html', reportName: 'PHPUnit Coverage'])
+    }
+```
+
 ## Got an idea?
 
 Create an issue, a PR, both (if possible) :smile_cat:
