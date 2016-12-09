@@ -4,6 +4,7 @@ require_once __DIR__.'/../vendor/autoload.php';
 require_once __DIR__.'/../src/ulid.php';
 
 use lewiscowles\core\Ulid;
+use lewiscowles\core\LcgRandomGenerator;
 
 use PHPUnit\Framework\TestCase;
 
@@ -14,12 +15,16 @@ class BaseTest extends TestCase
 
     public function setup()
     {
-        $this->ulid = new Ulid();
+        $this->ulid = new Ulid($this->getLcgRandom());
+    }
+
+    public function getLcgRandom() {
+        return new LcgRandomGenerator();
     }
 
     public function testRandIsBetween1and0()
     {
-        $rand = $this->invokeMethod($this->ulid, 'getRand');
+        $rand = $this->getLcgRandom()->generate();
         $this->assertTrue( $rand > 0 && $rand < 1 );
     }
 
