@@ -5,9 +5,11 @@ namespace lewiscowles\core;
 final class Ulid {
     const ENCODING = "0123456789ABCDEFGHJKMNPQRSTVWXYZ";
     const ENCODING_LENGTH = 32;
+    protected $time_src;
     protected $random_float_src;
     
-    public function __construct(RandomFloatInterface $rf){
+    public function __construct(TimeSourceInterface $ts, RandomFloatInterface $rf) {
+        $this->time_src = $ts;
         $this->random_float_src = $rf;
     }
     
@@ -15,7 +17,7 @@ final class Ulid {
     {
         return sprintf(
             "%s%s",
-            $this->encodeTime($this->getTime(), 10),
+            $this->encodeTime($this->time_src->getTime(), 10),
             $this->encodeRandom(16)
         );
     }
@@ -49,11 +51,6 @@ final class Ulid {
         }
         return $out;
     }
-    
-    private function getTime() : int
-    {
-        return time();
-    }
 }
 
 interface RandomFloatInterface {
@@ -66,5 +63,18 @@ class LcgRandomGenerator implements RandomFloatInterface {
     
     public function generate() : float {
         return lcg_value();
+    }
+}
+
+interface TimeSourceInterface {
+    public function getTime() : int;
+}
+
+class PHPTimeSource implements TimeSourceInterface {
+    
+    public function __construct() { }
+    
+    public function getTime() : int {
+        return time();
     }
 }
