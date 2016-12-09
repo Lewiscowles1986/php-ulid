@@ -4,7 +4,7 @@
     "type": "library",
     "require": {
         "php": ">=7.0"
-    }
+    },
     "require-dev": {
         "ext-xdebug": "*",
         "phpunit/phpunit": "^5.4"
