@@ -5,7 +5,7 @@ require_once __DIR__.'/../src/ulid.php';
 
 use lewiscowles\core\Ulid;
 use lewiscowles\core\LcgRandomGenerator;
-
+use lewiscowles\core\PHPTimeSource;
 use PHPUnit\Framework\TestCase;
 
 class BaseTest extends TestCase
@@ -15,7 +15,11 @@ class BaseTest extends TestCase
 
     public function setup()
     {
-        $this->ulid = new Ulid($this->getLcgRandom());
+        $this->ulid = new Ulid($this->getTimeSource(), $this->getLcgRandom());
+    }
+
+    public function getTimeSource() {
+        return new PHPTimeSource();
     }
 
     public function getLcgRandom() {
