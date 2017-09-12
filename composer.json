@@ -9,13 +9,12 @@
         "ext-xdebug": "*",
         "phpunit/phpunit": "^5.4"
     },
-    "license": "AGPL",
+    "license": "AGPL-1.0",
     "authors": [
         {
             "name": "Lewis Cowles",
             "email": "lewiscowles@me.com"
         }
     ],
-    "minimum-stability": "stable",
-    "require": {}
+    "minimum-stability": "stable"
 }
