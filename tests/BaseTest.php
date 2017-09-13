@@ -1,8 +1,5 @@
 <?php
 
-require_once __DIR__.'/../vendor/autoload.php';
-require_once __DIR__.'/../src/ulid.php';
-
 use lewiscowles\core\Ulid;
 use lewiscowles\core\LcgRandomGenerator;
 use lewiscowles\core\PHPTimeSource;
