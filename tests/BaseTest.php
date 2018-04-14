@@ -1,5 +1,7 @@
 <?php
 
+namespace lewiscowles\core;
+
 use lewiscowles\core\Ulid;
 use lewiscowles\core\LcgRandomGenerator;
 use lewiscowles\core\PHPTimeSource;
