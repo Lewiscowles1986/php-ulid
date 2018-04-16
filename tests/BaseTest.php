@@ -28,7 +28,8 @@ class BaseTest extends TestCase
     public function testRandIsBetween1and0()
     {
         $rand = $this->getLcgRandom()->generate();
-        $this->assertTrue( $rand > 0 && $rand < 1 );
+        $this->assertGreaterThan(0, $rand);
+        $this->assertLessThan(1, $rand);
     }
 
     public function testEncodeTimeShouldReturnExpectedEncodedResult()
