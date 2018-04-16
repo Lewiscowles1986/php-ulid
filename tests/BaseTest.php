@@ -9,7 +9,6 @@ use PHPUnit\Framework\TestCase;
 
 class BaseTest extends TestCase
 {
-
     const TIME = 1469918176385;
 
     public function setup()
@@ -28,7 +27,18 @@ class BaseTest extends TestCase
     public function testRandIsBetween1and0()
     {
         $rand = $this->getLcgRandom()->generate();
+        $this->assertTrue($rand > 0 && $rand < 1);
+    }
+
+    public function testRandIsGreaterThan0()
+    {
+        $rand = $this->getLcgRandom()->generate();
         $this->assertGreaterThan(0, $rand);
+    }
+
+    public function testRandIsLessThan1()
+    {
+        $rand = $this->getLcgRandom()->generate();
         $this->assertLessThan(1, $rand);
     }
 
