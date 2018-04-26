@@ -1,6 +1,6 @@
 <?php
 
-namespace lewiscowles\core;
+namespace lewiscowles\core\Tests;
 
 use lewiscowles\core\Ulid;
 use lewiscowles\core\LcgRandomGenerator;

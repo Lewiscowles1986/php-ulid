@@ -13,7 +13,7 @@
         "psr-4": { "lewiscowles\\core\\": "src" }
     },
     "autoload-dev": {
-        "psr-4": { "lewiscowles\\core\\": "tests" }
+        "psr-4": { "lewiscowles\\core\\Tests\\": "tests" }
     },
     "license": "AGPL-3.0",
     "authors": [
