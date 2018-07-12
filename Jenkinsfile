@@ -1,16 +1,12 @@
 def docker_images = ['cd2team/docker-php:7.0', 'cd2team/docker-php:7.1', 'cd2team/docker-php:7.2']
+def tasks = [:]
 
-def get_stages(docker_image) {
-    stages = {
+def get_tasks(docker_image) {
+    tasks = {
         docker.image(docker_image).inside {
             stage("${docker_image}") {
                 steps {
                     echo 'Running in ${docker_image}'
-                }
-            }
-            stage('checkout') {
-                steps {
-                    checkout scm
                 }
             }
             stage('build') {
@@ -25,16 +21,20 @@ def get_stages(docker_image) {
             }
         }
     }
-    return stages
+    return tasks
 }
 
-node('master') {
-    def stages = [:]
-
-    for (int i = 0; i < docker_images.size(); i++) {
-        def docker_image = docker_images[i]
-        stages[docker_image] = get_stages(docker_image)
+stage('checkout') {
+    steps {
+        checkout scm
     }
+}
 
-    parallel stages
+for (int i = 0; i < docker_images.size(); i++) {
+    def docker_image = docker_images[i]
+    tasks[docker_image] = get_tasks(docker_image)
+}
+
+stage ("Matrix") {
+    parallel tasks
 }
