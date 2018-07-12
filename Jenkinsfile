@@ -1,5 +1,5 @@
 pipeline {
-    agent { docker { image 'php' } }
+    agent { docker { image 'chialab/php:7.0' } }
     stages {
         stage('checkout') {
             steps {
