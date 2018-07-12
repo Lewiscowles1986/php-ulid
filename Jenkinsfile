@@ -24,17 +24,19 @@ def get_tasks(docker_image) {
     return tasks
 }
 
-stage('checkout') {
-    steps {
-        checkout scm
-    }
-}
 
 for (int i = 0; i < docker_images.size(); i++) {
     def docker_image = docker_images[i]
     tasks[docker_image] = get_tasks(docker_image)
 }
 
-stage ("Matrix") {
-    parallel tasks
+pipeline {
+    stage('checkout') {
+        steps {
+            checkout scm
+        }
+    }
+    stage ("Matrix") {
+        parallel tasks
+    }
 }
