@@ -31,12 +31,14 @@ for (int i = 0; i < docker_images.size(); i++) {
 }
 
 pipeline {
-    stage('checkout') {
-        steps {
-            checkout scm
+    stages {
+        stage('checkout') {
+            steps {
+                checkout scm
+            }
         }
-    }
-    stage ("Matrix") {
-        parallel tasks
+        stage ("Matrix") {
+            parallel tasks
+        }
     }
 }
