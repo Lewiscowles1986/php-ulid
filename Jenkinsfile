@@ -2,13 +2,19 @@ pipeline {
     agent { docker { image 'php' } }
     stages {
         stage('checkout') {
-            checkout scm
+            steps {
+                checkout scm
+            }
         }
         stage('build') {
-            sh "composer install"
+            steps {
+                sh "composer install"
+            }
         }
         stage('test') {
-            sh "./vendor/bin/phpunit"
+            steps {
+                sh "./vendor/bin/phpunit"
+            }
         }
     }
 }
