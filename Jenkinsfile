@@ -6,9 +6,6 @@ def get_stages(docker_image) {
             stage("${docker_image}") {
                 echo 'Running in ${docker_image}'
             }
-            stage('checkout') {
-                checkout scm
-            }
             stage('build') {
                 sh "composer install"
             }
@@ -29,5 +26,8 @@ node('master') {
         stages[docker_image] = get_stages(docker_image)
     }
     
+    stage('checkout') {
+        checkout scm
+    }
     parallel stages
 }
