@@ -4,7 +4,9 @@ def get_stages(docker_image) {
     stages = {
         docker.image(docker_image).inside {
             stage("${docker_image}") {
-                echo 'Running in ${docker_image}'
+                steps {
+                    echo 'Running in ${docker_image}'
+                }
             }
             stage('checkout') {
                 steps {
