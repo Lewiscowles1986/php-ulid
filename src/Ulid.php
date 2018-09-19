@@ -9,27 +9,27 @@ final class Ulid
 
     private $time_src;
     private $random_float_src;
-    
+
     public function __construct(TimeSourceInterface $ts, RandomFloatInterface $rf)
     {
         $this->time_src = $ts;
         $this->random_float_src = $rf;
     }
-    
-    public function get(): string
+
+    public function get(int $random_length = 16): string
     {
         return sprintf(
             '%s%s',
             $this->encodeTime($this->time_src->getTime(), 10),
-            $this->encodeRandom(16)
+            $this->encodeRandom($random_length)
         );
     }
-    
+
     private function encodeTime(int $time, int $length): string
     {
         $out = '';
         while ($length > 0) {
-            $mod = (int) ($time % self::ENCODING_LENGTH);           
+            $mod = (int) ($time % self::ENCODING_LENGTH);
             $out = self::ENCODING[$mod] . $out;
             $time = ($time - $mod) / self::ENCODING_LENGTH;
             $length--;
@@ -37,7 +37,7 @@ final class Ulid
 
         return $out;
     }
-    
+
     private function encodeRandom(int $length): string
     {
         $out = '';

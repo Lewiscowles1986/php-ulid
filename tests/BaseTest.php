@@ -62,6 +62,12 @@ class BaseTest extends TestCase
         $this->assertEquals(26, strlen($hash));
     }
 
+    public function testNewUlidShouldReturnCustomRandomLength()
+    {
+        $hash = $this->ulid->get(10);
+        $this->assertEquals(20, strlen($hash));
+    }
+
     protected function invokeMethod(&$object, $methodName, array $parameters = array())
     {
         $reflection = new \ReflectionClass(get_class($object));
