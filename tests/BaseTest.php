@@ -12,16 +12,18 @@ class BaseTest extends TestCase
 
     const TIME = 1469918176385;
 
-    public function setup()
+    protected function setup(): void
     {
         $this->ulid = new Ulid($this->getTimeSource(), $this->getLcgRandom());
     }
 
-    public function getTimeSource() {
+    public function getTimeSource()
+    {
         return new PHPTimeSource();
     }
 
-    public function getLcgRandom() {
+    public function getLcgRandom()
+    {
         return new LcgRandomGenerator();
     }
 
