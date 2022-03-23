@@ -28,6 +28,10 @@ To generate the coverage report xdebug extension must be enabled for your PHP
 
 `php vendor/bin/infection`
 
+### PHPStan
+
+`php vendor/bin/phpstan analyse src -l max`
+
 ### Jenkins pipeline step for testing
 
 ```Groovy

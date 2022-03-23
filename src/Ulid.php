@@ -7,7 +7,10 @@ final class Ulid
     const ENCODING = '0123456789ABCDEFGHJKMNPQRSTVWXYZ';
     const ENCODING_LENGTH = 32;
 
+    /** @var TimeSourceInterface */
     private $time_src;
+
+    /** @var RandomFloatInterface */
     private $random_float_src;
     
     public function __construct(TimeSourceInterface $ts, RandomFloatInterface $rf)
