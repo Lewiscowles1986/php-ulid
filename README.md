@@ -10,7 +10,7 @@ License AGPL
 
 ## Requirements
 
-PHP7
+PHP7.4+
 
 ## Usage:
 
@@ -20,9 +20,13 @@ PHP7
 
 To generate the coverage report xdebug extension must be enabled for your PHP
 
-### CLI
+### Unit-test CLI
 
 `php vendor/bin/phpunit --coverage-html ./reports/ --whitelist src`
+
+### Mutation testing with infection
+
+`php vendor/bin/infection`
 
 ### Jenkins pipeline step for testing
 
