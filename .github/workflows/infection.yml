@@ -1,0 +1,27 @@
+name: Mutation tests
+on:
+  workflow_call:
+jobs:
+  mutation_testing:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # Lint against the highest/lowest supported versions of each PHP major.
+        # And also do a run against "nightly" (the current dev version of PHP).
+        php_version: ['7.3']
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php_version }}
+
+      # Install dependencies and handle caching in one go.
+      # @link https://github.com/marketplace/actions/install-composer-dependencies
+      - name: Install Composer dependencies
+        uses: ramsey/composer-install@v2
+
+      - name: Mutation test
+        run: php vendor/bin/infection

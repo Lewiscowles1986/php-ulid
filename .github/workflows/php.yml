@@ -1,0 +1,20 @@
+name: PHP Composer
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+concurrency:
+  # The concurrency group contains the workflow name and the branch name.
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  static_analysis:
+    uses: Lewiscowles1986/php-ulid/.github/workflows/phpstan.yml@main
+  unit_test:
+    uses: Lewiscowles1986/php-ulid/.github/workflows/unittest.yml@main
+  mutation_testing:
+    uses: Lewiscowles1986/php-ulid/.github/workflows/infection.yml@main
