@@ -17,7 +17,7 @@
     "autoload-dev": {
         "psr-4": { "lewiscowles\\core\\Tests\\": "tests" }
     },
-    "license": "AGPL-3.0",
+    "license": "AGPL-3.0-or-later",
     "authors": [
         {
             "name": "Lewis Cowles",
