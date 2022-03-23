@@ -7,9 +7,9 @@
     },
     "require-dev": {
         "ext-xdebug": "*",
-        "phpunit/phpunit": "^8.0",
+        "phpunit/phpunit": "^8.0|^9",
         "infection/infection": "*",
-        "phpstan/phpstan": "^1.4"
+        "phpstan/phpstan": "*"
     },
     "autoload": {
         "psr-4": { "lewiscowles\\core\\": "src" }
