@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class TimeEncoderTest extends TestCase
 {
-    const TIME = 1469918176385;
+    private const TIME = 1469918176385;
 
     public function getTimeEncoder(): TimeEncoderInterface
     {
