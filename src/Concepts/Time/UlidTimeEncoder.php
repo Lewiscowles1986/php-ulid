@@ -21,8 +21,8 @@ final class UlidTimeEncoder implements TimeEncoderInterface
     {
         $time = $this->timeSource->getTime();
         $out = '';
-        for ($i = 0; $i < $desiredLength->getValue(); $i++) {
-            $mod = (int) ($time % self::ENCODING_LENGTH);
+        while (strlen($out) < $desiredLength->getValue()) {
+            $mod = intval($time % self::ENCODING_LENGTH);
             $out = self::ENCODING[$mod] . $out;
             $time = ($time - $mod) / self::ENCODING_LENGTH;
         }

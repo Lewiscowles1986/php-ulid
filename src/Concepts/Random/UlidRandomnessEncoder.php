@@ -20,8 +20,12 @@ final class UlidRandomnessEncoder implements RandomnessEncoderInterface
     public function encode(PositiveNumber $desiredLength): string
     {
         $out = '';
-        for ($i = 0; $i < $desiredLength->getValue(); $i++) {
-            $rand = (int) floor(self::ENCODING_LENGTH * $this->randomFloatSource->generate());
+        while (strlen($out) < $desiredLength->getValue()) {
+            $rand = intval(
+                floor(
+                    self::ENCODING_LENGTH * $this->randomFloatSource->generate()
+                )
+            );
             $out = self::ENCODING[$rand] . $out;
         }
 
