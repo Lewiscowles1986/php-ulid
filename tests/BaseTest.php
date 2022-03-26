@@ -5,50 +5,44 @@ namespace lewiscowles\core\Tests;
 use lewiscowles\core\Ulid;
 use lewiscowles\core\LcgRandomGenerator;
 use lewiscowles\core\PHPTimeSource;
+use lewiscowles\core\RandomFloatInterface;
+use lewiscowles\core\TimeEncoderInterface;
+use lewiscowles\core\TimeSourceInterface;
+use lewiscowles\core\UlidTimeEncoder;
 use PHPUnit\Framework\TestCase;
 
 class BaseTest extends TestCase
 {
-
     const TIME = 1469918176385;
 
     protected function setup(): void
     {
-        $this->ulid = new Ulid($this->getTimeSource(), $this->getLcgRandom());
+        $this->ulid = new Ulid(
+            $this->getTimeSource(),
+            $this->getLcgRandom(),
+            $this->getTimeEncoder()
+        );
     }
 
-    public function getTimeSource()
+    public function getTimeSource(): TimeSourceInterface
     {
         return new PHPTimeSource();
     }
 
-    public function getLcgRandom()
+    public function getLcgRandom(): RandomFloatInterface
     {
         return new LcgRandomGenerator();
+    }
+
+    public function getTimeEncoder(): TimeEncoderInterface
+    {
+        return new UlidTimeEncoder();
     }
 
     public function testRandIsBetween1and0()
     {
         $rand = $this->getLcgRandom()->generate();
         $this->assertTrue( $rand > 0 && $rand < 1 );
-    }
-
-    public function testEncodeTimeShouldReturnExpectedEncodedResult()
-    {
-        $hash = $this->invokeMethod($this->ulid, 'encodeTime', [self::TIME, 10]);
-        $this->assertEquals("01ARYZ6S41", $hash);
-    }
-
-    public function testEncodeTimeShouldChangeLengthProperly()
-    {
-        $hash = $this->invokeMethod($this->ulid, 'encodeTime', [self::TIME, 12]);
-        $this->assertEquals("0001ARYZ6S41", $hash);
-    }
-
-    public function testEncodeTimeShouldTruncateTimeIfNotLongEnough()
-    {
-        $hash = $this->invokeMethod($this->ulid, 'encodeTime', [self::TIME, 8]);
-        $this->assertEquals("ARYZ6S41", $hash);
     }
 
     public function testEncodeRandomShouldReturnCorrectLength()

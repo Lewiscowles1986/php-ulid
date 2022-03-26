@@ -1,6 +1,7 @@
 <?php
 
 namespace lewiscowles\core;
+use lewiscowles\core\ValueTypes\PositiveNumber;
 
 final class Ulid
 {
@@ -8,44 +9,38 @@ final class Ulid
     const ENCODING_LENGTH = 32;
 
     /** @var TimeSourceInterface */
-    private $time_src;
+    private $timeSource;
 
     /** @var RandomFloatInterface */
-    private $random_float_src;
+    private $randomFloatSource;
+
+    /** @var UlidTimeEncoder */
+    private $timeEncoder;
     
-    public function __construct(TimeSourceInterface $ts, RandomFloatInterface $rf)
-    {
-        $this->time_src = $ts;
-        $this->random_float_src = $rf;
+    public function __construct(
+        TimeSourceInterface $timeSource,
+        RandomFloatInterface $randomFloatSource,
+        UlidTimeEncoder $timeEncoder
+    ) {
+        $this->timeSource = $timeSource;
+        $this->randomFloatSource = $randomFloatSource;
+        $this->timeEncoder = $timeEncoder;
     }
     
     public function get(): string
     {
         return sprintf(
             '%s%s',
-            $this->encodeTime($this->time_src->getTime(), 10),
+            $this->timeEncoder->encode($this->timeSource->getTime(), new PositiveNumber(10)),
             $this->encodeRandom(16)
         );
-    }
-    
-    private function encodeTime(int $time, int $length): string
-    {
-        $out = '';
-        while ($length > 0) {
-            $mod = (int) ($time % self::ENCODING_LENGTH);           
-            $out = self::ENCODING[$mod] . $out;
-            $time = ($time - $mod) / self::ENCODING_LENGTH;
-            $length--;
-        }
-
-        return $out;
     }
     
     private function encodeRandom(int $length): string
     {
         $out = '';
         while ($length > 0) {
-            $rand = (int) floor(self::ENCODING_LENGTH * $this->random_float_src->generate());
+            $rand = (int) floor(self::ENCODING_LENGTH * $this->randomFloatSource->generate());
             $out = self::ENCODING[$rand] . $out;
             $length--;
         }
