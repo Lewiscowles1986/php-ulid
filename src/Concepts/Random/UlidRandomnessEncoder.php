@@ -2,6 +2,7 @@
 
 namespace lewiscowles\core\Concepts\Random;
 
+use lewiscowles\core\Concepts\Random\Source\RandomFloatInterface;
 use lewiscowles\core\ValueTypes\PositiveNumber;
 
 final class UlidRandomnessEncoder implements RandomnessEncoderInterface

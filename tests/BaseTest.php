@@ -5,7 +5,7 @@ namespace lewiscowles\core\Tests;
 use lewiscowles\core\Ulid;
 use lewiscowles\core\Concepts\Time\PHPTimeSource;
 use lewiscowles\core\Concepts\Time\UlidTimeEncoder;
-use lewiscowles\core\Concepts\Random\LcgRandomGenerator;
+use lewiscowles\core\Concepts\Random\Source\LcgRandomGenerator;
 use lewiscowles\core\Concepts\Random\UlidRandomnessEncoder;
 use lewiscowles\core\Concepts\Time\TimeSourceInterface;
 use lewiscowles\core\Tests\Support\CannedTimeSource;

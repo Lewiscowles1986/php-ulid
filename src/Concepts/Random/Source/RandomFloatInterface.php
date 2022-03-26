@@ -1,6 +1,6 @@
 <?php
 
-namespace lewiscowles\core\Concepts\Random;
+namespace lewiscowles\core\Concepts\Random\Source;
 
 interface RandomFloatInterface
 {
