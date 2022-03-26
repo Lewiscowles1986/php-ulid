@@ -1,6 +1,6 @@
 <?php
 
-namespace lewiscowles\core;
+namespace lewiscowles\core\Concepts\Time;
 
 use lewiscowles\core\ValueTypes\PositiveNumber;
 

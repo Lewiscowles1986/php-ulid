@@ -2,8 +2,8 @@
 
 namespace lewiscowles\core\Tests;
 
-use lewiscowles\core\TimeEncoderInterface;
-use lewiscowles\core\UlidTimeEncoder;
+use lewiscowles\core\Concepts\Time\TimeEncoderInterface;
+use lewiscowles\core\Concepts\Time\UlidTimeEncoder;
 use lewiscowles\core\ValueTypes\PositiveNumber;
 use lewiscowles\core\Tests\Support\CannedTimeSource;
 use PHPUnit\Framework\TestCase;

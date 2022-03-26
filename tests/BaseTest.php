@@ -3,10 +3,10 @@
 namespace lewiscowles\core\Tests;
 
 use lewiscowles\core\Ulid;
-use lewiscowles\core\LcgRandomGenerator;
-use lewiscowles\core\PHPTimeSource;
-use lewiscowles\core\UlidRandomnessEncoder;
-use lewiscowles\core\UlidTimeEncoder;
+use lewiscowles\core\Concepts\Time\PHPTimeSource;
+use lewiscowles\core\Concepts\Time\UlidTimeEncoder;
+use lewiscowles\core\Concepts\Random\LcgRandomGenerator;
+use lewiscowles\core\Concepts\Random\UlidRandomnessEncoder;
 use PHPUnit\Framework\TestCase;
 
 class BaseTest extends TestCase

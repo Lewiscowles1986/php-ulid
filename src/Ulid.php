@@ -3,6 +3,8 @@
 namespace lewiscowles\core;
 
 use lewiscowles\core\ValueTypes\PositiveNumber;
+use lewiscowles\core\Concepts\Time\UlidTimeEncoder;
+use lewiscowles\core\Concepts\Random\RandomnessEncoderInterface;
 
 final class Ulid
 {

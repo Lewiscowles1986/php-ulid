@@ -2,7 +2,7 @@
 
 namespace lewiscowles\core\Tests\Support;
 
-use lewiscowles\core\TimeSourceInterface;
+use lewiscowles\core\Concepts\Time\TimeSourceInterface;
 
 final class CannedTimeSource implements TimeSourceInterface {
     /** @var int */
