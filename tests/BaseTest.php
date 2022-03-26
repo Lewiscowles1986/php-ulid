@@ -16,8 +16,9 @@ class BaseTest extends TestCase
     protected function setup(): void
     {
         $this->ulid = new Ulid(
-            new PHPTimeSource(),
-            new UlidTimeEncoder(),
+            new UlidTimeEncoder(
+                new PHPTimeSource()
+            ),
             new UlidRandomnessEncoder(
                 new LcgRandomGenerator()
             )

@@ -6,9 +6,6 @@ use lewiscowles\core\ValueTypes\PositiveNumber;
 
 final class Ulid
 {
-    /** @var TimeSourceInterface */
-    private $timeSource;
-
     /** @var RandomnessEncoderInterface */
     private $randomEncoder;
 
@@ -16,11 +13,9 @@ final class Ulid
     private $timeEncoder;
 
     public function __construct(
-        TimeSourceInterface $timeSource,
         UlidTimeEncoder $timeEncoder,
         RandomnessEncoderInterface $randomEncoder
     ) {
-        $this->timeSource = $timeSource;
         $this->timeEncoder = $timeEncoder;
         $this->randomEncoder = $randomEncoder;
     }
@@ -29,7 +24,7 @@ final class Ulid
     {
         return sprintf(
             '%s%s',
-            $this->timeEncoder->encode($this->timeSource->getTime(), new PositiveNumber(10)),
+            $this->timeEncoder->encode(new PositiveNumber(10)),
             $this->randomEncoder->encode(new PositiveNumber(16))
         );
     }

@@ -5,6 +5,7 @@ namespace lewiscowles\core\Tests;
 use lewiscowles\core\TimeEncoderInterface;
 use lewiscowles\core\UlidTimeEncoder;
 use lewiscowles\core\ValueTypes\PositiveNumber;
+use lewiscowles\core\Tests\Support\CannedTimeSource;
 use PHPUnit\Framework\TestCase;
 
 class TimeEncoderTest extends TestCase
@@ -13,24 +14,26 @@ class TimeEncoderTest extends TestCase
 
     public function getTimeEncoder(): TimeEncoderInterface
     {
-        return new UlidTimeEncoder();
+        return new UlidTimeEncoder(
+            new CannedTimeSource(self::TIME)
+        );
     }
 
     public function testEncodeTimeShouldReturnExpectedEncodedResult()
     {
-        $hash = $this->getTimeEncoder()->encode(self::TIME, new PositiveNumber(10));
+        $hash = $this->getTimeEncoder()->encode(new PositiveNumber(10));
         $this->assertEquals("01ARYZ6S41", $hash);
     }
 
     public function testEncodeTimeShouldChangeLengthProperly()
     {
-        $hash = $this->getTimeEncoder()->encode(self::TIME, new PositiveNumber(12));
+        $hash = $this->getTimeEncoder()->encode(new PositiveNumber(12));
         $this->assertEquals("0001ARYZ6S41", $hash);
     }
 
     public function testEncodeTimeShouldTruncateTimeIfNotLongEnough()
     {
-        $hash = $this->getTimeEncoder()->encode(self::TIME, new PositiveNumber(8));
+        $hash = $this->getTimeEncoder()->encode(new PositiveNumber(8));
         $this->assertEquals("ARYZ6S41", $hash);
     }
 }
