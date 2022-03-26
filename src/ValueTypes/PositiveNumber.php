@@ -9,15 +9,16 @@ final class PositiveNumber
     /** @var int */
     private $value;
 
-    public function __construct(int $n) {
+    public function __construct(int $n)
+    {
         if ($n < 0) {
             throw new DomainException("$n is not a positive number.");
         }
         $this->value = $n;
     }
-    
+
     public function getValue(): int
     {
-       return $this->value;
+        return $this->value;
     }
 }

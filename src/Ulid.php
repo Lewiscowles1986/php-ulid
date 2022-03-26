@@ -1,6 +1,7 @@
 <?php
 
 namespace lewiscowles\core;
+
 use lewiscowles\core\ValueTypes\PositiveNumber;
 
 final class Ulid
@@ -13,7 +14,7 @@ final class Ulid
 
     /** @var UlidTimeEncoder */
     private $timeEncoder;
-    
+
     public function __construct(
         TimeSourceInterface $timeSource,
         UlidTimeEncoder $timeEncoder,
@@ -23,7 +24,7 @@ final class Ulid
         $this->timeEncoder = $timeEncoder;
         $this->randomEncoder = $randomEncoder;
     }
-    
+
     public function get(): string
     {
         return sprintf(
