@@ -8,7 +8,7 @@ jobs:
       matrix:
         # Lint against the highest/lowest supported versions of each PHP major.
         # And also do a run against "nightly" (the current dev version of PHP).
-        php_version: ['7.3', '7.4', '8.0', '8.1']
+        php_version: ['7.4', '8.0', '8.1']
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
