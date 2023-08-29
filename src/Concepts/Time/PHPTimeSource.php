@@ -6,6 +6,6 @@ class PHPTimeSource implements TimeSourceInterface
 {
     public function getTime(): int
     {
-        return time();
+        return hrtime(true);
     }
 }
