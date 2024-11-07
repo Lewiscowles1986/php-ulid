@@ -1,6 +1,6 @@
 name: Mutation tests
 on:
-  workflow_call:
+  workflow_dispatch:
 jobs:
   mutation_testing:
     runs-on: ubuntu-latest
